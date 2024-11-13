@@ -1,1 +1,1 @@
-# AppGen Backend API generator
+# appgen-backend-generator
