@@ -1,10 +1,9 @@
 import uuid
 
 from datetime import datetime
-from fastapi import Query
 from pydantic import EmailStr
 from sqlalchemy import String
-from sqlmodel import Field, SQLModel, select
+from sqlmodel import Field, SQLModel
 
 class UserBase(SQLModel):
     username: str = Field(max_length=50)
