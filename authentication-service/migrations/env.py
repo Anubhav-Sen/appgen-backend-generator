@@ -16,10 +16,9 @@ from app.models import User
 # access to the values within the .ini file in use.
 config = context.config
 
-dotenv_path = join(dirname(dirname(__file__)), '.env')
-load_dotenv(dotenv_path)
+DB_PATH = join(dirname(dirname(__file__)), 'database.db')
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+DATABASE_URL = f"sqlite://{DB_PATH}"
 
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
