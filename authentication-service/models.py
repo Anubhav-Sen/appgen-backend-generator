@@ -13,6 +13,6 @@ class User(SQLModel, table=True):
     username: str = Field(max_length=50)
     email_address: EmailStr = Field(max_length=255, sa_type=String(), unique=True, nullable= False)
     password: str = Field(max_length=255)
-    date_created: datetime = Field(default_factory=datetime.now(datetime.timezone.utc), nullable=False)
-    date_updated: datetime = Field(default_factory=datetime.now(datetime.timezone.utc), nullable=False)
+    date_created: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    date_updated: datetime = Field(default_factory=datetime.utcnow, nullable=False)
 
