@@ -1,15 +1,23 @@
-from fastapi import FastAPI
-from models import User
+import uuid
+
+from fastapi import FastAPI, HTTPException
+from models import *
 from db import SessionDep
 
 app = FastAPI()
 
-@app.get("/user")
-async def user():
-    return {"message":"Hello world!"}
+@app.get("/user/{id}", response_model=UserPublic)
+def get_user(id: uuid.UUID, session: SessionDep):
 
-@app.post("/users")
-def user(user: User, session: SessionDep): 
+    user = session.get(User, id)
+    
+    if not user:
+        raise HTTPException(status_code=404, detail="user not found.")
+    
+    return user
+
+@app.post("/users/", response_model=UserPublic)
+def post_user(user: UserCreate, session: SessionDep): 
 
     session.add(user)
     session.commit()

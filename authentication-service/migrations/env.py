@@ -18,7 +18,7 @@ config = context.config
 
 DB_PATH = join(dirname(dirname(__file__)), 'database.db')
 
-DATABASE_URL = f"sqlite://{DB_PATH}"
+DATABASE_URL = f"sqlite:///{DB_PATH}"
 
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
