@@ -1,11 +1,10 @@
 import uuid
 
 from datetime import datetime
-from typing import Annotated
 from fastapi import Query
 from pydantic import EmailStr
 from sqlalchemy import String
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from sqlmodel import Field, SQLModel, select
 
 class User(SQLModel, table=True):
     __tablename__ = "users"
