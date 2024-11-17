@@ -54,5 +54,16 @@ def patch_user(id: uuid.UUID, user: UserUpdate, session: SessionDep):
 
     return db_user
 
-    
+@app.delete("users/{id}")
+def delete_user(id: uuid.UUID, session: SessionDep):
+
+    db_user = session.get(User, id)
+
+    if not db_user:
+        raise HTTPException(status_code=404, detail="user not found.")
+
+    session.delete(db_user)
+    session.commit()
+
+    return {"ok": True}
 
