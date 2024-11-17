@@ -1,7 +1,7 @@
 import uuid
 
 from datetime import datetime
-from pydantic import EmailStr
+from pydantic import BaseModel, EmailStr
 from sqlalchemy import String
 from sqlmodel import Field, SQLModel
 
@@ -23,7 +23,7 @@ class UserPublic(UserBase):
 class UserCreate(UserBase):
     password: str = Field(max_length=255)
 
-class UserUpdate():
+class UserUpdate(BaseModel):
     username: str | None = None
     password: str | None = None 
     
