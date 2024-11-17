@@ -1,12 +1,18 @@
 <?php
-    namespace AppGen\handlers;
+    namespace AppGen\Handlers;
+
+    require_once(dirname(dirname(__FILE__))."/Settings/Settings.php");
+
+    use AppGen\Settings\Settings;
 
     class URLResolver {
 
         const APP_FOLDER = 'phprest';
 
+        public static $current_end_point;
+
         public static function args(){
-            $uri = $_SERVER['REQUEST_URI'];
+            $uri = str_replace(Settings::settings()['system']['base_path'],'',$_SERVER['REQUEST_URI']);
             $args = [];
 
             if(\strlen($uri) > 0 ){
@@ -24,10 +30,6 @@
 
             $args = array_values($args);
 
-            if($args[0] === self::APP_FOLDER){
-                unset($args[0]);
-                $args = array_values($args);
-            }
             return $args;
         }
 

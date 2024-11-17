@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "b1132765-9db4-48bc-8ce0-31fe7a499512",
+		"name": "AppGen xampp REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32313336"
+	},
+	"item": [
+		{
+			"name": "API Key Verification",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eWBcTjh8Xk2lC5OxSuAwdTRArVdVxRyT",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
