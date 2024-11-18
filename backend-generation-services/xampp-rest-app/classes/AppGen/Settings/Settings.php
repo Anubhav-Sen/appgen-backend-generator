@@ -21,8 +21,7 @@ class Settings{
                     if(!$ini_file) $ini_file = $_SERVER['DOCUMENT_ROOT'] . "/" . self::settings()['system']['base_path'] . self::settings()['auth']['source_ini_path'];
                 break;
             }
-            echo $ini_file . "\n";
-            echo "file_exists = " . (file_exists($ini_file)? 'true':'false') . "\n";
+
             if(file_exists($ini_file)){
                 self::$data[$key] = parse_ini_file($ini_file,true);
             }

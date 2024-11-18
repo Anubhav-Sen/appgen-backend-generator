@@ -2,6 +2,7 @@
     namespace AppGen\Handlers;
 
     require_once(dirname(dirname(__FILE__)) . "/Settings/Settings.php");
+    require_once(dirname(dirname(__FILE__)) . "/Database/DBFactory.php");
 
     use AppGen\Settings\Settings;
 
@@ -12,6 +13,5 @@
             Settings::data();
         }
 
-        // public static function
     }
 ?>

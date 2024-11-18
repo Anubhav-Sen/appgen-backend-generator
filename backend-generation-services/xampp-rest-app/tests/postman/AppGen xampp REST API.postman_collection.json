@@ -14,7 +14,7 @@
 					"apikey": [
 						{
 							"key": "value",
-							"value": "eWBcTjh8Xk2lC5OxSuAwdTRArVdVxRyT",
+							"value": "{{API_KEY}}",
 							"type": "string"
 						},
 						{
@@ -32,7 +32,45 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/xampp_rest_app/rest/0.1",
+					"raw": "{{REST_END_POINT}}",
+					"host": [
+						"{{REST_END_POINT}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/list",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -40,11 +78,445 @@
 					"path": [
 						"xampp_rest_app",
 						"rest",
-						"0.1"
+						"0.1",
+						"User"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "User/add",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{$randomUserName}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{$randomPassword}}",
+							"type": "text"
+						},
+						{
+							"key": "roles",
+							"value": "apiuser",
+							"type": "text"
+						},
+						{
+							"key": "fullname",
+							"value": "{{$randomFullName}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/modify",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{$randomUserName}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{$randomPassword}}",
+							"type": "text"
+						},
+						{
+							"key": "roles",
+							"value": "apiuser,admin",
+							"type": "text"
+						},
+						{
+							"key": "fullname",
+							"value": "{{$randomFullName}}",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/modify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/activate",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/activate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"activate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/deactivate",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/deactivate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"deactivate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/delete",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/undelete",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/undelete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"undelete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/purge",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/xampp_rest_app/rest/0.1/User/purge",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"xampp_rest_app",
+						"rest",
+						"0.1",
+						"User",
+						"purge"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "REST_END_POINT",
+			"value": "http://localhost/xampp_rest_app/rest/0.1",
+			"type": "string"
+		},
+		{
+			"key": "API_KEY",
+			"value": "eWBcTjh8Xk2lC5OxSuAwdTRArVdVxRyT",
+			"type": "string"
 		}
 	]
 }
