@@ -25,19 +25,6 @@ def verify_password(plain_password, hashed_password):
 def get_password_hash(password):
     return password_context.hash(password)
 
-def get_user(session: SessionDep, username: EmailStr,):
-    if username in session:
-        db_user = session[username]
-        return db_user
-
-def authenticate_user(session: SessionDep, username: EmailStr, password: str):
-    user = get_user(session, username)
-    if not user:
-        return False
-    if not verify_password(password, user.hashed_password):
-        return False
-    return user
-
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
     to_encode = data.copy()
@@ -80,9 +67,13 @@ def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
 @app.post("/authenticate", response_model=Token)
 def authenticate_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], session: SessionDep):
 
-    user = authenticate_user(session, form_data.username, form_data.password)
+    user = session.exec(select(User).where(User.email_address == form_data.username)).one() 
     
     if not user:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"},)
+    
+    if not verify_password(form_data.password, user.password):
+
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password", headers={"WWW-Authenticate": "Bearer"},)
     
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -112,6 +103,7 @@ def get_users(session: SessionDep, offset: int = 0, limit: Annotated[int, Query(
 def post_user(user: UserCreate, session: SessionDep): 
 
     db_user = User.model_validate(user)
+    db_user.password = get_password_hash(db_user.password)
 
     session.add(db_user)
     session.commit()
@@ -123,12 +115,13 @@ def post_user(user: UserCreate, session: SessionDep):
 def patch_user(id: uuid.UUID, user: UserUpdate, session: SessionDep):
     
     db_user = session.get(User, id)
-
+    
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found.")
-    
+      
+    user.password = get_password_hash(user.password)
     update_data = user.model_dump(exclude_unset=True)
-
+ 
     db_user.sqlmodel_update(update_data)
 
     session.add(db_user)
