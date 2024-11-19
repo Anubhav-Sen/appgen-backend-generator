@@ -1,10 +1,11 @@
+import settings
+
 from typing import Annotated
 from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
-from settings import DATABASE_URL
 
 connect_args = {"check_same_thread": False}
-engine = create_engine(DATABASE_URL, connect_args=connect_args)
+engine = create_engine(settings.DB_URL, connect_args=connect_args)
 
 def db_init():
     SQLModel.metadata.create_all(engine)

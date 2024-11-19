@@ -16,11 +16,17 @@ from app.models import User
 # access to the values within the .ini file in use.
 config = context.config
 
-DB_PATH = join(dirname(dirname(__file__)), 'database.db')
+#DB_PATH = join(dirname(dirname(__file__)), 'database.db')
+#DATABASE_URL = f"sqlite:///{DB_PATH}"
 
-DATABASE_URL = f"sqlite:///{DB_PATH}"
+DB_USER = os.environ.get("DB_USER")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+DB_NAME = os.environ.get("DB_NAME")
+INSTANCE_CONNECTION_NAME = os.environ.get("INSTANCE_CONNECTION_NAME")
+INSTANCE_UNIX_SOCKET = f"/cloudsql/{INSTANCE_CONNECTION_NAME}"
+DB_URL = f"postgresql+pg8000://{DB_USER}:{DB_PASSWORD}@/{DB_NAME}?unix_sock={INSTANCE_UNIX_SOCKET}/.s.PGSQL.5432"
 
-config.set_main_option("sqlalchemy.url", DATABASE_URL)
+config.set_main_option("sqlalchemy.url", DB_URL)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

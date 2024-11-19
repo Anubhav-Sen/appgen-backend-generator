@@ -1,13 +1,16 @@
 import os
 from os.path import join, dirname
-from dotenv import load_dotenv
 
-dotenv_path = join(dirname(dirname(__file__)), '.env')
-load_dotenv(dotenv_path)
+#DB_PATH = join(dirname(dirname(__file__)), 'database.db')
+#DATABASE_URL = f"sqlite:///{DB_PATH}"
 
-DB_PATH = join(dirname(dirname(__file__)), 'database.db')
-DATABASE_URL = f"sqlite:///{DB_PATH}"
+DB_USER = os.environ.get("DB_USER")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+DB_NAME = os.environ.get("DB_NAME")
+INSTANCE_CONNECTION_NAME = os.environ.get("INSTANCE_CONNECTION_NAME")
+INSTANCE_UNIX_SOCKET = f"/cloudsql/{INSTANCE_CONNECTION_NAME}"
+DB_URL = f"postgresql+pg8000://{DB_USER}:{DB_PASSWORD}@/{DB_NAME}?unix_sock={INSTANCE_UNIX_SOCKET}/.s.PGSQL.5432"
 TOKEN_URL = "token"
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = os.getenv("ALGORITHM")
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+SECRET_KEY = os.environ.get("SECRET_KEY")
+ALGORITHM = os.environ.get("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = os.environ.get("ACCESS_TOKEN_EXPIRE_MINUTES")
