@@ -26,13 +26,13 @@ Settings file path: /classes/AppGen/Settings/settings.ini
 * source_type = "INI" ;INI: PHP configuration file, DB: MySql Database (MySql not support in this release)
 * source_ini_path = "/data/users.ini" ;Please set path after base_path. Don't forget to start with a /
 ### Section database
-vendor = "MySql" ;Only MySql supported in this release.
-version = "8.2.12" ; Only 8.2.12 version supported in this release.
-server = "localhost"
-username = "root"
-password = ""
-database = "appgen_example"
-connection_type = "PDO" ; Only PDO supported in this release (OO: Object oriented, PROC: Procedural, PDO: PHP Data Objects).
+* vendor = "MySql" ;Only MySql supported in this release.
+* version = "8.2.12" ; Only 8.2.12 version supported in this release.
+* server = "localhost"
+* username = "root"
+* password = ""
+* database = "appgen_example"
+* connection_type = "PDO" ; Only PDO supported in this release (OO: Object oriented, PROC: Procedural, PDO: PHP Data Objects).
 ## Testing using POSTMAN
 ### Collection variables with starting defaults
 * REST_END_POINT = http://localhost/xampp_rest_app/rest/0.1
