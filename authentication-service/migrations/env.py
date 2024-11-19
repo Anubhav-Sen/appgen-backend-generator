@@ -17,7 +17,7 @@ from app.models import User
 config = context.config
 
 #DB_PATH = join(dirname(dirname(__file__)), 'database.db')
-#DATABASE_URL = f"sqlite:///{DB_PATH}"
+#DB_URL = f"sqlite:///{DB_PATH}"
 
 DB_USER = os.environ.get("DB_USER")
 DB_PASSWORD = os.environ.get("DB_PASSWORD")

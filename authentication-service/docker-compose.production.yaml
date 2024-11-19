@@ -6,4 +6,5 @@ services:
     command: sh -c "uvicorn --app-dir ./app main:app --port=8000 --host=0.0.0.0"
     env_file:
       - .env
-    ports: -8000:8000
+    ports:
+      - 8000:8000

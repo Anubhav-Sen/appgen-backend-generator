@@ -7,11 +7,13 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import EmailStr
 from sqlmodel import select
 from models import *
-from db import SessionDep
+from db import SessionDep, db_init
 from typing import Annotated
 from passlib.context import CryptContext
 from datetime import datetime, timedelta, timezone
 from jwt.exceptions import InvalidTokenError
+from alembic.config import Config
+from alembic import command
 
 app = FastAPI()
 
@@ -140,5 +142,12 @@ def delete_user(id: uuid.UUID, session: SessionDep):
 
     session.delete(db_user)
     session.commit()
+
+    return {"ok": True}
+
+@app.get("/create_db_and_tables", status_code=status.HTTP_200_OK)
+def get_create_db_and_tables():
+
+    db_init()
 
     return {"ok": True}
